@@ -3,7 +3,6 @@ import java.util.ArrayList;
 /*
  * This class takes all 5 dice at the same time to make things easier.
 */
-
 public class AllDice {
     private Die die1; 
     private Die die2; 
@@ -89,10 +88,20 @@ public class AllDice {
 
 
 
-    //ArrayList section about diceToKeep
-    public void addToKeep(int keep)
+//ArrayList section about diceToKeep
+    //This checks to see if the user wants to keep a die and adds the 
+    //location of the die to the arrayList. I wrote it like this
+    //becuase I did this part before looking at the directions and
+    //realized we had to use y/n.
+    public void addToKeep(String chosenDice)
     {
-        this.diceToKeep.add(keep);
+        for(int i = 0; i < 5; i++)
+        {
+            if(chosenDice.charAt(i) == 'y')
+            {
+                this.diceToKeep.add(i + 1);
+            }
+        }
     }
     
     //This function checks to see if diceToKeep DOESNT have a number. It then

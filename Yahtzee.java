@@ -1,16 +1,20 @@
 import java.util.Scanner;
+
 public class Yahtzee {
     //Yahtzee has a alldice. I think it needs static though I'm not sure.
     private static AllDice allDice;
+    private static Scoring scoreCard;
+
 
     public static void main(String[] args) {
         allDice = new AllDice();
+        scoreCard = new Scoring();
         Scanner sc = new Scanner(System.in);
-        while(sc.next().equalsIgnoreCase("y"))
-        {
+        do{
             coreGameLoop(sc); //run this continuously for the thirteen rounds for actual game when i make it.
             System.out.println("Play Again? y/n");
         }
+        while(sc.nextLine().equalsIgnoreCase("y"));
         sc.close();
     }
 
@@ -25,9 +29,9 @@ public class Yahtzee {
         for(int i = 0; i < 2; i++)
         {
             allDice.updateSidesUp();
-            System.out.println("Choose which dice to keep (ex. ynyny to keep 1 3 and 5)");
+            System.out.println("Choose which dice to keep (ex. ynyny to keep dice 1 3 and 5)");
             allDice.printAll();
-            updateDiceToKeep(sc);
+            allDice.addToKeep(sc.nextLine());
             allDice.rollRemaining();
             allDice.clearList();
             System.out.println();
@@ -38,34 +42,29 @@ public class Yahtzee {
         System.out.println("Final roll results:");
         allDice.updateSidesUp();
         allDice.printAll();
+        allDice.clearList();
         System.out.println();
-
-        //ask the user which category to put their score into
+        
+        //now that the round is over it's time to calculate potential scores.
+        calculateScores();
+        clearScoreBoard();
     }
 
+
+
+    //resets the scoreboard for new game.
+    public static void clearScoreBoard()
+    {
+        scoreCard = null;
+        scoreCard = new Scoring();
+    }
     
+
 
     public static void calculateScores()
     {
-
-    }
-
-
-
-    //This function takes the user input of which dice to keep and splits
-    //it into an array using a space as a delimiter. It then sends
-    //the value to the alldice object to update the diceToKeep arrayList.
-    public static void updateDiceToKeep(Scanner sc)
-    {
-        String diceToKeep = sc.nextLine();
-        int keep;
-        String[] diceNumber = diceToKeep.split(" ");
-
-
-        for(int i = 0; i < diceNumber.length; i++)
-        {
-            keep = Integer.parseInt(diceNumber[i]);
-            allDice.addToKeep(keep);      
-        }
+        scoreCard.addHand(allDice.getAllSides());
+        scoreCard.calculateScores();
+        scoreCard.dislpayScores();
     }
 }
