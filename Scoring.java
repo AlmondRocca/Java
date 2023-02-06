@@ -59,6 +59,7 @@ public class Scoring {
         //extraPoints(); for the next project probably
     }
 
+    //These methods check for points of each category
     private void chance()
     {
         pointsOfEachType[12] = sumOfHand();

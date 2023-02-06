@@ -1,0 +1,221 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 6,
+    "backwardDepth": 6,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "Yahtzee",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_260099046 { 
+   	label=Yahtzee
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Yahtzee260099046[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Yahtzee</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ calculateScores()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ clearScoreBoard()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ coreGameLoop(sc: Scanner)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ main(args: String[])</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_68704 { 
+   	label=Die
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Die68704[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Die</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   numSides: Integer [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   sideUp: Integer [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ compareTo(otherDie: Die): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ roll()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_706308433 { 
+   	label=Scoring
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Scoring706308433[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Scoring</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   currentHand: int[] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   eachKind: int[] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   extraPoints: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   pointsOfEachType: int[] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   totalPoints: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addHand(handFromAllDice: int[])</TD></TR>
+<TR><TD ALIGN="LEFT" >+ calculateScores()</TD></TR>
+<TR><TD ALIGN="LEFT" >- chance()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ dislpayScores()</TD></TR>
+<TR><TD ALIGN="LEFT" >- fourOfAKind(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >- fullHouseScores()</TD></TR>
+<TR><TD ALIGN="LEFT" >- numOfEachKind()</TD></TR>
+<TR><TD ALIGN="LEFT" >- ofAKindScores()</TD></TR>
+<TR><TD ALIGN="LEFT" >- oneThroughSixScores()</TD></TR>
+<TR><TD ALIGN="LEFT" >- sortHand()</TD></TR>
+<TR><TD ALIGN="LEFT" >- straights(): boolean[]</TD></TR>
+<TR><TD ALIGN="LEFT" >- straightsScores()</TD></TR>
+<TR><TD ALIGN="LEFT" >- sumOfHand(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >- threeOfAKind(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >- yahtzee()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_752015560 { 
+   	label=AllDice
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   AllDice752015560[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)AllDice</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   diceSidesUp: int[] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   diceToKeep: ArrayList&lt;Integer&gt; [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   die1: Die [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   die2: Die [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   die3: Die [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   die4: Die [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   die5: Die [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addToKeep(chosenDice: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ clearList()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ printAll()</TD></TR>
+<TR><TD ALIGN="LEFT" >- roll1()</TD></TR>
+<TR><TD ALIGN="LEFT" >- roll2()</TD></TR>
+<TR><TD ALIGN="LEFT" >- roll3()</TD></TR>
+<TR><TD ALIGN="LEFT" >- roll4()</TD></TR>
+<TR><TD ALIGN="LEFT" >- roll5()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ rollAll()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ rollRemaining()</TD></TR>
+<TR><TD ALIGN="LEFT" >- rollRemainingSwitch(i: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateSidesUp()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+'edges    
+AllDice752015560 -> Die68704[label="die1
+[0..1]"];
+AllDice752015560 -> Die68704[label="die2
+[0..1]"];
+AllDice752015560 -> Die68704[label="die3
+[0..1]"];
+AllDice752015560 -> Die68704[label="die4
+[0..1]"];
+AllDice752015560 -> Die68704[label="die5
+[0..1]"];
+    
+}
+@enduml

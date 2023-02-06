@@ -32,7 +32,6 @@ public class AllDice {
         die5.roll();
     }
 
-    //unsure if needed. Might use later.
     public int[] getAllSides()
     {
         return diceSidesUp;

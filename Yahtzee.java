@@ -1,5 +1,9 @@
 import java.util.Scanner;
 
+/*
+ * This class contains the main game logic for Yahtzee
+*/
+
 public class Yahtzee {
     //Yahtzee has a alldice. I think it needs static though I'm not sure.
     private static AllDice allDice;
